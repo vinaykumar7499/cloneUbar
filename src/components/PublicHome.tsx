@@ -11,7 +11,7 @@ const [authopen,setauthopen]=useState(false)
         <>
             <HeroSection/>
             <VehicleSlider/>
-            <AuthModal open={authopen} onClose={()=>setauthopen(false)} />
+            <AuthModal open={authopen} onClose={()=>setauthopen(true)} />
         </>
     );
 };

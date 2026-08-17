@@ -1,8 +1,11 @@
-type propType={
-    open:boolean,
-    onClose:()=>void
-}
-const AuthModal = ( {open,onClose}:propType) => {
+'use client'
+
+type PropType = {
+    open: boolean;
+    onClose: () => void;
+};
+
+const AuthModal = ({ open, onClose }: PropType) => {
     return (
         <>
             AuthModal
