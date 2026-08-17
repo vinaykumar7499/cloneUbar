@@ -80,11 +80,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     maxAge: 10 * 24 * 60 * 60, // 10 days
     strategy: "jwt",
   },
-  // Custom auth pages (signIn, error, etc.)
-  pages: {
-    signIn: "/signin",
-    error: "/signin",
-  },
 
   callbacks: {
     // 1. signIn Callback: Controls whether a user is allowed to sign in and syncs Google OAuth users with MongoDB

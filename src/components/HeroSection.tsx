@@ -1,9 +1,13 @@
-'use client'
+'use client';
 
 import { Bike, Bus, Car, Truck } from 'lucide-react';
 import { motion } from 'motion/react';
 
-const HeroSection = () => {
+type HeroProps = {
+    openAuth?: () => void;
+};
+
+const HeroSection = ({ openAuth }: HeroProps) => {
     return (
         <div className="relative min-h-screen w-full overflow-hidden">
             {/* Background Image */}
@@ -16,7 +20,6 @@ const HeroSection = () => {
 
             {/* Main Centered Container */}
             <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 text-center">
-
                 {/* Heading */}
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
@@ -49,17 +52,15 @@ const HeroSection = () => {
                     <Bus size={28} />
                     <Truck size={28} />
                 </motion.div>
+
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className='mt-12 px-10 py-4 bg-white text-black rounded-full font-semibold shadow-xl'
-
-
+                    onClick={openAuth}
+                    className="mt-12 px-10 py-4 bg-white text-black rounded-full font-semibold shadow-xl hover:bg-gray-100 transition-colors cursor-pointer"
                 >
                     Book now
-
                 </motion.button>
-
             </div>
         </div>
     );

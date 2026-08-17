@@ -1,11 +1,16 @@
-'use client'
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 
 const Nav_Items = ["Home", "Booking", "About Us", "Contact"];
 
-const Navbar = () => {
+type NavProps = {
+    openAuth?: () => void;
+};
+
+const Navbar = ({ openAuth }: NavProps) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -17,7 +22,7 @@ const Navbar = () => {
             <div className="flex items-center">
                 <Link href="/">
                     <Image
-                        src="/logo.png"
+                        src="/logo.jpg"
                         alt="Logo"
                         width={120}
                         height={38}
@@ -45,7 +50,10 @@ const Navbar = () => {
 
             {/* 3. Right: Login Button */}
             <div className="flex items-center">
-                <button className="px-5 py-1.5 rounded-full bg-white text-black font-medium text-sm hover:bg-gray-200 transition-colors duration-200">
+                <button
+                    onClick={openAuth}
+                    className="px-5 py-1.5 rounded-full bg-white text-black font-medium text-sm hover:bg-gray-200 transition-colors duration-200 cursor-pointer"
+                >
                     Login
                 </button>
             </div>
