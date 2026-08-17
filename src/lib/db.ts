@@ -38,10 +38,8 @@ const connectDb = async (): Promise<typeof mongoose> => {
 
     if (!cached?.promise) {
         const opts = {
-            bufferCommands: false,
             serverSelectionTimeoutMS: 15000,
             socketTimeoutMS: 45000,
-            family: 4, // Force IPv4
         };
 
         cached!.promise = mongoose.connect(mongodbUrl, opts).then((mongooseInstance) => {
@@ -63,5 +61,3 @@ const connectDb = async (): Promise<typeof mongoose> => {
 };
 
 export default connectDb;
-
-

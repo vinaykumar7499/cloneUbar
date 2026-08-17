@@ -7,6 +7,9 @@ export interface IUser extends Document {
     password?: string;
     image?: string;
     role?: string;
+    isEmailVerified?: boolean;
+    otp?: string;
+    otpExpires?: Date;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -38,6 +41,16 @@ const userSchema = new mongoose.Schema<IUser>(
             enum: ["user", "admin"],
             default: "user",
         },
+        isEmailVerified: {
+            type: Boolean,
+            default: false,
+        },
+        otp: {
+            type: String,
+        },
+        otpExpires: {
+            type: Date,
+        },
     },
     { timestamps: true }
 );
@@ -46,4 +59,3 @@ const userSchema = new mongoose.Schema<IUser>(
 const User: Model<IUser> = (mongoose.models.User as Model<IUser>) || mongoose.model<IUser>("User", userSchema);
 
 export default User;
-

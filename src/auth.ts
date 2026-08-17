@@ -7,6 +7,9 @@ import bcrypt from "bcryptjs";
 
 // Initialize NextAuth v5 configuration and export authentication helper methods
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
+  secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "9f8c6b731e05d21461f893ca76d20361e2f754ad4e2df4cb37f6a73c1d9b3e10",
+
   // Configure authentication providers
   providers: [
     // Google OAuth Provider
@@ -120,7 +123,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return true;
     },
 
-
     // JWT callback is called whenever a JSON Web Token is created or updated
     async jwt({ token, user, account }) {
       if (user) {
@@ -146,6 +148,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return token;
     },
+
     // Session callback exposes token properties to client session
     session({ session, token }) {
       if (session.user && token.id) {
@@ -155,9 +158,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
-  // Secret key used to encrypt and sign JWT tokens
-  secret: process.env.AUTH_SECRET,
 });
-
-
-
