@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
         try {
             await connectDb();
         } catch (dbErr: any) {
-            console.error("❌ Database Connection Failed:", dbErr);
+            console.error(" Database Connection Failed:", dbErr);
             return NextResponse.json(
                 { message: "Database connection failed. Please check MongoDB connection." },
                 { status: 500 }
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
         // Step 5: 6-Digit Random OTP generate karein
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         console.log(`\n========================================`);
-        console.log(`🔥 REGISTRATION OTP FOR [${email}]: ${otp}`);
+        console.log(` REGISTRATION OTP FOR [${email}]: ${otp}`);
         console.log(`========================================\n`);
 
         // Step 6: OTP expiry set karein (10 minutes)
@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
             if (process.env.NODEMAILER_EMAIL && process.env.NODEMAILER_PASS && !process.env.NODEMAILER_PASS.includes("your_16")) {
                 await sendMail({
                     to: email,
-                    subject: "Your Rydex Verification Code",
+                    subject: "Your viany clone uber hai ya  Verification Code",
                     html: `
                         <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
                             <h2>Welcome to Rydex, ${name}!</h2>
@@ -108,10 +108,10 @@ export async function POST(req: NextRequest) {
                     `,
                 });
             } else {
-                console.log("ℹ️ Note: Nodemailer password not configured yet. Using Terminal OTP:", otp);
+                console.log(" Note: Nodemailer password not configured yet. Using Terminal OTP:", otp);
             }
         } catch (mailError) {
-            console.error("⚠️ Nodemailer failed to send email (Check App Password):", mailError);
+            console.error(" Nodemailer failed to send email (Check App Password):", mailError);
         }
 
         // Step 10: Success response return karein

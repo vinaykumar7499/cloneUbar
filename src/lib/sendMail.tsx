@@ -21,19 +21,22 @@ type SendMailOptions = {
 export const sendMail = async ({ to, subject, html }: SendMailOptions) => {
     try {
         const mailOptions = {
-            from: `"Rydex" <${process.env.NODEMAILER_EMAIL}>`,
+            from: `"viany clone" <${process.env.NODEMAILER_EMAIL}>`,
             to,
             subject,
             html,
         };
 
         const info = await transporter.sendMail(mailOptions);
-        console.log("✅ Email sent successfully:", info.messageId);
+        console.log(" Email sent successfully:", info.messageId);
         return { success: true, messageId: info.messageId };
     } catch (error) {
-        console.error("❌ Error sending email via Nodemailer:", error);
+        console.error(" Error sending email via Nodemailer:", error);
         throw error;
     }
 };
+
+
+
 
 export default transporter;
