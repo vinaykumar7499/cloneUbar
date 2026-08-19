@@ -1,13 +1,31 @@
 'use client';
 
+// 1. React, Next.js aur Icons import kiye
+import React from 'react';
 import { Bike, Bus, Car, Truck } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { useRouter } from 'next/navigation';
 
 type HeroProps = {
     openAuth?: () => void;
 };
 
 const HeroSection = ({ openAuth }: HeroProps) => {
+    // 2. Next.js Router aur Redux user state
+    const router = useRouter();
+    const { userData } = useSelector((state: RootState) => state.user);
+
+    // 3. "Book now" click handler: Agar login hai toh /booking par bhejo, warna Login popup kholo
+    const handleBookNow = () => {
+        if (userData) {
+            router.push('/booking');
+        } else {
+            openAuth?.();
+        }
+    };
+
     return (
         <div className="relative min-h-screen w-full overflow-hidden">
             {/* Background Image */}
@@ -25,7 +43,7 @@ const HeroSection = ({ openAuth }: HeroProps) => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7 }}
-                    className="text-white font-extrabold text-4xl sm:text-5xl md:text-7xl"
+                    className="text-white font-extrabold text-4xl sm:text-5xl md:text-7xl tracking-tight"
                 >
                     Book Any Vehicle
                 </motion.h1>
@@ -35,12 +53,12 @@ const HeroSection = ({ openAuth }: HeroProps) => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="mt-4 max-w-xl text-gray-300 text-base sm:text-lg"
+                    className="mt-4 max-w-xl text-gray-300 text-base sm:text-lg font-medium"
                 >
                     From daily rides to heavy transport — all in one platform.
                 </motion.p>
 
-                {/* Icons */}
+                {/* Vehicle Icons */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -53,10 +71,11 @@ const HeroSection = ({ openAuth }: HeroProps) => {
                     <Truck size={28} />
                 </motion.div>
 
+                {/* Book Now Button */}
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={openAuth}
+                    onClick={handleBookNow}
                     className="mt-12 px-10 py-4 bg-white text-black rounded-full font-semibold shadow-xl hover:bg-gray-100 transition-colors cursor-pointer"
                 >
                     Book now
