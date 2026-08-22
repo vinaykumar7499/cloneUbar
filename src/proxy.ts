@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3cdb06bd164e795e9756e14ccdffe159a3994b86
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 
@@ -48,9 +53,12 @@ export async function proxy(req: NextRequest) {
 
     // 5. Partner Page Security (/partner)
     if (pathname.startsWith("/partner")) {
+<<<<<<< HEAD
         if(pathname.startsWith("/partner/onboarding")){
             return NextResponse.next();
         }
+=======
+>>>>>>> 3cdb06bd164e795e9756e14ccdffe159a3994b86
         if (role !== "partner") {
             return NextResponse.redirect(new URL("/", req.url));
         }
@@ -74,4 +82,10 @@ export const config = {
 };
 
 export default proxy;
+<<<<<<< HEAD
 export { proxy as Proxy, proxy as middleware };
+=======
+export { proxy as Proxy };
+
+
+>>>>>>> 3cdb06bd164e795e9756e14ccdffe159a3994b86

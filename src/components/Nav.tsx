@@ -9,7 +9,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { signOut } from 'next-auth/react';
+<<<<<<< HEAD
 import { LogOut, Menu, X, Handshake, LayoutDashboard, Bike, ChevronRight, Car, Truck } from 'lucide-react';
+=======
+import { LogOut, Calendar, Menu, X, Handshake, LayoutDashboard } from 'lucide-react';
+>>>>>>> 3cdb06bd164e795e9756e14ccdffe159a3994b86
 
 // 3. Navbar Navigation Items
 const Nav_Items = ["Home", "Bookings", "About Us", "Contact"];
@@ -121,7 +125,11 @@ const Navbar = ({ openAuth }: NavProps) => {
                                         {/* Become a Partner Gray Banner Card (Screenshot Match) */}
                                         {userData.role !== "partner" && userData.role !== "admin" && (
                                             <Link
+<<<<<<< HEAD
                                                 href="/partner/onboarding/vehicle"
+=======
+                                                href="/partner/register"
+>>>>>>> 3cdb06bd164e795e9756e14ccdffe159a3994b86
                                                 onClick={() => setProfileOpen(false)}
                                                 className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-100/90 hover:bg-zinc-200/90 transition-colors my-2 group cursor-pointer"
                                             >
@@ -284,7 +292,11 @@ const Navbar = ({ openAuth }: NavProps) => {
                                 {/* Mobile Role Links */}
                                 {userData && userData.role !== "partner" && userData.role !== "admin" && (
                                     <Link
+<<<<<<< HEAD
                                         href="/partner/onboarding/vehicle"
+=======
+                                        href="/partner/register"
+>>>>>>> 3cdb06bd164e795e9756e14ccdffe159a3994b86
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="px-4 py-3 rounded-2xl text-base font-medium text-amber-400 hover:bg-amber-500/10 transition-colors flex items-center gap-2"
                                     >
