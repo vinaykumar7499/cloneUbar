@@ -1,7 +1,8 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Model } from "mongoose";
 
 // Interface defining the User document structure in TypeScript
-export interface IUser extends Document {
+export interface IUser {
+    _id?: string;
     name: string;
     email: string;
     password?: string;
@@ -10,8 +11,9 @@ export interface IUser extends Document {
     isEmailVerified?: boolean;
     otp?: string;
     otpExpires?: Date;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
+    parthnerOnBoardingSteps: number
 }
 
 // Mongoose schema definition with validation rules
@@ -38,7 +40,7 @@ const userSchema = new mongoose.Schema<IUser>(
         },
         role: {
             type: String,
-            enum: ["user", "admin"],
+            enum: ["user", "admin", "partner"],
             default: "user",
         },
         isEmailVerified: {
@@ -50,6 +52,14 @@ const userSchema = new mongoose.Schema<IUser>(
         },
         otpExpires: {
             type: Date,
+        },
+        parthnerOnBoardingSteps: {
+            type: Number,
+            min: 0,
+            max: 8,
+            default: 0
+
+
         },
     },
     { timestamps: true }
